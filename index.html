@@ -5,23 +5,90 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>rescisão do gato</title>
     <style>
-        .noticias {
-            font-family: Arial, Helvetica, sans-serif;
-            border: 1px solid rgb(0, 0, 0);
-            background-color: rgb(197, 124, 124);
-            border-radius: 10px;
-            box-shadow: 2px 2px 9px rgb(75, 196, 23);
-            padding: 20px;
-            margin: 40px;
-            width: 400px;
-        }
-        #botao {
-            border: 1px solid;
-            border-radius: 10px;
-            border-bottom: 2px;
-            padding: 10px;
-            width: 200px;
-        }
+         /* --- ESTILO GERAL --- */
+body {
+  background-color: #767fd7;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;   /* centraliza horizontalmente */
+  align-items: center;       /* centraliza verticalmente */
+  height: 100vh;             /* ocupa toda a altura da tela */
+  overflow: hidden;          /* impede rolagem da página */
+}
+
+/* --- CONTAINER PRINCIPAL --- */
+.calcular {
+  background-color: #fcfcfc;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #d7d3d3;
+  padding: 15px 20px;
+  width: 90%;
+  max-width: 380px;
+  max-height: 90vh;          /* garante que a div caiba na tela */
+  overflow: auto;            /* se passar, só a div rola, não a página */
+  text-align: center;
+}
+
+/* --- TÍTULOS --- */
+.calcular h1 {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #000706;
+}
+
+.calcular h3 {
+  font-style: italic;
+  margin-bottom: 10px;
+  color: #000000;
+}
+
+/* --- IMAGEM --- */
+.calcular img {
+  display: block;
+  margin: 0 auto 10px;
+  width: 120px;             /* menor pra caber melhor */
+  border-radius: 10px;
+  border: 2px solid #bfc213;
+  transition: transform 0.3s;
+}
+
+.calcular img:hover {
+  transform: scale(1.05);
+}
+
+/* --- LABELS E INPUTS --- */
+.calcular label {
+  display: block;
+  text-align: left;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-size: 0.85rem;
+  color: #000000;
+}
+
+.calcular input {
+  width: 100%;
+  padding: 6px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  background-color: #dae2e8;
+  color: #000000;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+/* --- BOTÃO --- */
+.calcular button {
+  width: 100%;
+  padding: 8px;
+  background-color: #00ff99;
+  colo
+
+
     </style>
 </head>
 <body>
@@ -80,3 +147,4 @@
     
 </body>
 </html>
+
