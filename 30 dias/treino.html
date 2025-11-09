@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background: black;
+            color: white;
+        }
+     
+    </style>
+</head>
+<body>
+    <h3 id="titulo">esse texto tem
+         <i>
+            <u>importancia</u>
+        </i>
+    </h3>
+
+    <div class="noticia">
+        <h1>titulo</h1>
+        <p>troca de tiros no rio de janeiro</p>
+    </div>
+
+    <div class="sub_titulo">
+        <h1>titulo da notico 2</h1>
+        <p>bastantes mortos no local</p>
+    </div>
+    <img src="https://shre.ink/ofG8" alt="noticia" id="noticias">
+   
+    <script>
+        //querySelector
+        // querySelectorALL
+
+        let imagem = document.querySelector('#noticias')
+        imagem.src = 'https://shre.ink/ofGi'
+          console.log(imagem.alt);
+        
+          document.querySelector('#titulo').innerHTML = imagem.alt
+    </script>
+</body>
+</html>
