@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop Pro - Produtos</title> 
+    <style>
+        :root {
+            --primary-color: #3B82F6;
+            --secondary-color: #10B981;
+            --text-color: #1F2937;
+            --background-light: #F9FAFB;
+            --font-family: 'Arial', sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #F9FAFB;
+            background-image: url('https://toppng.com/uploads/preview/ata-cachorros-patinha-de-cachorro-1156323284903jhdlbfii.png');
+            background-repeat: repeat;
+            background-size: 50px 50px;
+            background-position: top left;
+            background-attachment: fixed;
+            font-family: var(--font-family);
+        }
+        a { text-decoration: none; color: var(--primary-color); }
+
+        /* HEADER */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            border-bottom: 1px solid #E5E7EB;
+            background-image: url('https://www.pngall.com/wp-content/uploads/5/Paw-Print-PNG.png');
+            background-repeat: repeat;
+            background-size: 50px 50px;
+            background-position: top left;
+        }
+        .header > div, .header nav {
+            background-color: white;
+            border-radius: 50px;
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo span { font-size: 1.8em; font-weight: bold; color: var(--primary-color); cursor: default; }
+        nav ul { list-style: none; display: flex; gap: 10px; }
+        nav ul li a { display: block; padding: 8px 15px; border-radius: 50px; background-color: white; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: 0.3s; font-weight: 500; color: var(--text-color); }
+        nav ul li a:hover { background-color: var(--primary-color); color: white; }
+        .user-actions a {
+            display: flex; align-items: center; gap: 5px;
+            padding: 8px 15px; border-radius: 50px; background-color: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); font-weight: 500; color: var(--text-color); transition: 0.3s;
+            position: relative;
+        }
+        .user-actions a:hover { background-color: var(--primary-color); color: white; }
+        .carrinho-contador {
+            position: absolute; top: -10px; right: -10px;
+            background-color: #EF4444; color: white;
+            border-radius: 50%; padding: 2px 6px;
+            font-size: 0.7em; font-weight: bold; display: none;
+        }
+
+        /* PRODUTOS */
+        .products-header { padding: 30px 5%; background-color: var(--background-light); border-bottom: 1px solid #E5E7EB; text-align: center; }
+        .products-header h1 { font-size: 2.5em; color: var(--primary-color); margin-bottom: 5px; }
+        .products-list-container { padding: 50px 5% 20px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .product-item { padding: 20px; background-color: white; border: 1px solid #E5E7EB; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); text-align: center; transition: transform 0.2s; }
+        .product-item:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        .product-img { width: 100%; max-height: 220px; object-fit: contain; border-radius: 6px; margin-bottom: 15px; }
+        .product-item h3 { color: var(--primary-color); margin: 10px 0; }
+        .product-item .price { font-size: 1.5em; font-weight: bold; color: var(--secondary-color); margin: 15px 0; }
+        .btn { padding: 12px 25px; border: none; border-radius: 8px; font-size: 1em; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .primary { background-color: var(--primary-color); color: white; }
+        .btn-add-to-cart { width: 100%; }
+
+        /* CHECKOUT WHATSAPP */
+        .checkout-whatsapp { padding: 30px 5%; text-align: center; background-color: #E5F7ED; }
+        .checkout-container { max-width: 800px; margin: 0 auto; padding: 20px; border: 1px dashed var(--secondary-color); border-radius: 10px; }
+        #btn-finalizar-whatsapp { background-color: #25D366; width: 100%; font-size: 1.1em; padding: 15px; }
+        #btn-finalizar-whatsapp:hover { background-color: #128C7E; }
+
+        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background-color: #25D366; color: white; font-size: 18px; padding: 15px 20px; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index: 1000; transition: 0.3s; }
+        .whatsapp-float:hover { background-color: #128C7E; }
+
+        /* FOOTER */
+        .footer { background-color: var(--text-color); color: white; text-align: center; padding: 20px 5%; margin-top: 0; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo"><span>bom pra cachorro</span></div>
+        <nav>
+            <ul>
+                <li><a href="produtos.html?pet=cao">Cães</a></li>
+                <li><a href="produtos.html?pet=gato">Gatos</a></li>
+                <li><a href="produtos.html">Aves e Outros</a></li>
+            </ul>
+        </nav>
+        <div class="user-actions">
+            <a href="carrinho.html">🛒 Carrinho
+                <span class="carrinho-contador">0</span>
+            </a>
+        </div>
+    </header>
+
+    <a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float">📲 quero Ajuda</a>
+
+    <main>
+        <section class="products-header">
+            <h1 id="category-title">Produtos</h1>
+            <p id="category-description">Confira nossos produtos para pets!</p>
+        </section>
+
+        <section class="products-list-container">
+            <div id="products-list" class="product-grid">
+                <!-- Produtos vão aqui -->
+            </div>
+        </section>
+
+        <section class="checkout-whatsapp">
+            <div class="checkout-container">
+                <p id="total-carrinho-display">Seu carrinho está vazio.</p>
+                <button id="btn-finalizar-whatsapp" class="btn primary" style="display:none;">
+                    📲 Finalizar Pedido e Enviar via WhatsApp
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 bom pra cachorro. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        // ====================== carrinho_base.js ======================
+        const WHATSAPP_NUMBER = "5511999999999";
+        const INTRO_MESSAGE = "Olá! Gostaria de fazer o seguinte pedido na PetShop Pro:\n\n";
+        let carrinho = [];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            carregarCarrinho();
+            carregarProdutos();
+        });
+
+        function carregarCarrinho() {
+            const carrinhoSalvo = localStorage.getItem('petshopProCarrinho');
+            if (carrinhoSalvo) carrinho = JSON.parse(carrinhoSalvo);
+            atualizarContadorCarrinho();
+        }
+
+        function salvarCarrinho() {
+            localStorage.setItem('petshopProCarrinho', JSON.stringify(carrinho));
+        }
+
+        function adicionarAoCarrinho(nome, preco, id) {
+            const precoNum = parseFloat(preco);
+            const idNum = parseInt(id);
+            const item = carrinho.find(i => i.id === idNum);
+            if (item) item.quantidade++;
+            else carrinho.push({id: idNum, nome, preco: precoNum, quantidade:1});
+            salvarCarrinho();
+            atualizarContadorCarrinho();
+        }
+
+        function atualizarContadorCarrinho() {
+            const contador = document.querySelector('.carrinho-contador');
+            if (!contador) return;
+            const total = carrinho.reduce((sum,i)=>sum+i.quantidade,0);
+            contador.textContent = total;
+            contador.style.display = total>0 ? 'inline-block' : 'none';
+
+            const btnFinalizar = document.getElementById('btn-finalizar-whatsapp');
+            const totalDisplay = document.getElementById('total-carrinho-display');
+            if(btnFinalizar && totalDisplay){
+                const totalGeral = carrinho.reduce((sum,i)=>sum+(i.preco*i.quantidade),0);
+                if(total>0){
+                    btnFinalizar.style.display='block';
+                    totalDisplay.textContent=`Total do Carrinho: R$ ${totalGeral.toFixed(2).replace('.',',')}`;
+                } else {
+                    btnFinalizar.style.display='none';
+                    totalDisplay.textContent='Seu carrinho está vazio.';
+                }
+            }
+        }
+
+        function gerarLinkWhatsApp() {
+            if(carrinho.length===0){ alert("Seu carrinho está vazio."); return; }
+            let msg = INTRO_MESSAGE;
+            let totalGeral=0;
+            carrinho.forEach((item,i)=>{
+                const sub = item.preco*item.quantidade;
+                totalGeral+=sub;
+                msg+=`*${i+1}. ${item.nome}*\n   - Qtd: ${item.quantidade}\n   - Preço Unit: R$ ${item.preco.toFixed(2).replace('.',',')}\n   - Subtotal: R$ ${sub.toFixed(2).replace('.',',')}\n`;
+            });
+            msg+=`-------------------------\n*TOTAL GERAL: R$ ${totalGeral.toFixed(2).replace('.',',')}*\n-------------------------\nAguardando confirmação de pagamento e entrega.`;
+            const url = `https://api.whatsapp.com/send?phone=${WHATSAPP_NUMBER}&text=${encodeURIComponent(msg)}`;
+            window.open(url,'_blank');
+        }
+
+        window.adicionarAoCarrinho = adicionarAoCarrinho;
+
+        // ====================== produtos.js ======================
+        const produtos = [
+            {id:1, nome:'Ração Premium', preco:50, img:'https://via.placeholder.com/250x150?text=Ração+Premium'},
+            {id:2, nome:'Brinquedo Bola', preco:20, img:'https://via.placeholder.com/250x150?text=Brinquedo+Bola'},
+            {id:3, nome:'Cama Pet', preco:150, img:'https://via.placeholder.com/250x150?text=Cama+Pet'},
+            {id:4, nome:'Shampoo Pet', preco:35, img:'https://via.placeholder.com/250x150?text=Shampoo+Pet'}
+        ];
+
+        function carregarProdutos(){
+            const container = document.getElementById('products-list');
+            container.innerHTML='';
+            produtos.forEach(p=>{
+                const div = document.createElement('div');
+                div.className='product-item';
+                div.innerHTML=`
+                    <img src="${p.img}" class="product-img" />
+                    <h3>${p.nome}</h3>
+                    <p class="price">R$ ${p.preco.toFixed(2)}</p>
+                    <button class="btn btn-add-to-cart" onclick="adicionarAoCarrinho('${p.nome}',${p.preco},${p.id})">
+                        Adicionar ao Carrinho
+                    </button>
+                `;
+                container.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>

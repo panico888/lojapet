@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Carrinho</title>
+
+    <style>
+        body { font-family: Arial; padding: 20px; }
+
+        h1 { margin-bottom: 20px; }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f7f7f7;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .cart-item img {
+            width: 80px;
+            border-radius: 6px;
+        }
+
+        .cart-info {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .remove-btn {
+            background: red;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #total-geral {
+            font-size: 1.4em;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        #btn-finalizar-whatsapp {
+            margin-top: 25px;
+            background-color: #89bd9c;
+            color: #fff;
+            padding: 15px;
+            font-size: 1.1em;
+            width: 100%;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        #btn-finalizar-whatsapp:hover {
+            background-color: #128C7E;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🛒 Meu Carrinho</h1>
+
+<div id="cart-list"></div>
+
+<p id="total-geral"></p>
+
+<button id="btn-finalizar-whatsapp" style="display:none;">
+    📲 Finalizar Pedido via WhatsApp
+</button>
+
+<script src="carrinho_base.js"></script>
+
+<script>
+// ===============================
+// Renderizar itens do carrinho
+// ===============================
+
+document.addEventListener('DOMContentLoaded', () => {
+    carregarCarrinho();
+    renderizarCarrinho();
+});
+
+function renderizarCarrinho() {
+    const lista = document.getElementById("cart-list");
+    const totalGeralEl = document.getElementById("total-geral");
+    const btnWhatsapp = document.getElementById("btn-finalizar-whatsapp");
+
+    lista.innerHTML = "";
+
+    if (carrinho.length === 0) {
+        lista.innerHTML = "<p>Seu carrinho está vazio.</p>";
+        totalGeralEl.textContent = "";
+        btnWhatsapp.style.display = "none";
+        return;
+    }
+
+    let total = 0;
+
+    carrinho.forEach(item => {
+        const subtotal = item.preco * item.quantidade;
+        total += subtotal;
+
+        lista.innerHTML += `
+            <div class="cart-item">
+                <img src="https://via.placeholder.com/100" alt="Produto">
+
+                <div class="cart-info">
+                    <strong>${item.nome}</strong><br>
+                    Quantidade: ${item.quantidade}<br>
+                    Subtotal: R$ ${subtotal.toFixed(2).replace('.', ',')}
+                </div>
+
+                <button class="remove-btn" onclick="removerDoCarrinho(${item.id})">Remover</button>
+            </div>
+        `;
+    });
+
+    totalGeralEl.textContent = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+    btnWhatsapp.style.display = "block";
+}
+</script>
+
+</body>
+</html>

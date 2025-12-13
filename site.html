@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop Pro - Ração Prática e Inovadora</title>
+</head>
+
+<style>
+/* ======= ESTILOS ======= */
+/* ======= ESTILOS ======= */
+:root {
+    --primary-color: #3B82F6;
+    --secondary-color: #10B981;
+    --text-color: #195bb8;
+    --background-light: #F9FAFB;
+    --font-family: 'Arial', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-image: url(https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1200&q=80
+);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+
+
+/* HEADER */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: var(--background-light);
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.logo a {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+.logo span {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-decoration: none; /* sem sublinhado */
+    cursor: default; /* indica que não é clicável */
+}
+
+
+nav ul { display: flex; list-style: none; }
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    margin: 0 15px;
+    font-weight: 500;
+    transition: .3s;
+}
+nav ul li a:hover { color: var(--primary-color); }
+
+/* HERO */
+.hero {
+    .hero {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+    padding: 80px 5% 50px;
+    text-align: center;
+}
+.hero h1 { font-size: 3em; margin-bottom: 15px; color: var(--primary-color); }
+.hero p { font-size: 1.2em; margin-bottom: 30px; }
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+.primary { background-color: var(--primary-color); color: white; }
+.secondary {
+    background-color: white;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+}
+.primary:hover { background-color: #2563EB; }
+.secondary:hover { background-color: var(--primary-color); color: white; }
+
+/* FEATURES */
+.features { padding: 50px 5%; text-align: center; }
+.feature-grid {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+}
+.feature-item {
+    flex: 1;
+    background: var(--background-light);
+    padding: 30px;
+    border-radius: 10px;
+}
+
+/* PRODUTOS */
+.products {
+    padding: 50px 5%;
+    text-align: center;
+    background-color: var(--background-light);
+}
+.product-item {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+}
+.whatsapp-float {
+    position: fixed; /* Fixo na tela */
+    bottom: 20px; /* distância do rodapé */
+    right: 20px;  /* distância da lateral direita */
+    background-color: #25D366; /* verde WhatsApp */
+    color: white;
+    font-size: 18px;
+    padding: 15px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 1000; /* sempre acima dos outros elementos */
+    transition: background-color 0.3s;
+}
+
+.whatsapp-float:hover {
+    background-color: #128C7E;
+}
+
+
+/* FOOTER */
+.footer {
+    background-color: var(--text-color);
+    color: white;
+    text-align: center;
+    padding: 20px 5%;
+}
+</style>
+
+<body>
+
+<header class="header">
+    <div class="logo">
+       <span>Bom pra cachorro</span>
+    </div>
+
+    <nav>
+        <ul>
+            <li><a href="produtos.html?pet=cao">Cães</a></li>
+            <li><a href="produtos.html?pet=gato">Gatos</a></li>
+            <li><a href="produtos.html?pet=outros">Aves e Outros</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botão WhatsApp Flutuante -->
+<a href="https://wa.me/5511999999999" target="_blank" class="whatsapp-float">
+    📲 quero Ajuda
+</a>
+
+    <div class="user-actions">
+        <a href="#">👤 Login</a>
+        <a href="carrinho.html">🛒 Carrinho 
+            <span class="carrinho-contador">0</span>
+        </a>
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <h1>A Ração Perfeita Para Seu Pet. Garantida!</h1>
+    <p>Selecione o perfil do seu amigo e encontre a nutrição ideal em segundos.</p>
+
+    <div class="cta-buttons">
+        <a href="produtos.html?pet=cao" class="btn primary">🐶 Cão</a>
+        <a href="produtos.html?pet=gato" class="btn primary">🐱 Gato</a>
+       <!-- <button class="btn secondary">🔎 Quero Ajuda</button> -->
+    </div>
+</section>
+
+<section class="products">
+    <h2>Produtos em Destaque</h2>
+
+    <div class="product-item">
+        <h3>Ração Premium Cão Adulto</h3>
+        <p>Fórmula natural, digestibilidade e ômega 3.</p>
+        <p class="price">R$ 159,90</p>
+
+        <button class="btn primary btn-add-to-cart" 
+            data-id="1"
+            data-nome="Ração Premium Cão Adulto"
+            data-preco="159.90">
+            Adicionar ao Carrinho
+        </button>
+    </div>
+</section>
+
+</main>
+
+<footer class="footer">
+    <p>&copy; 2025 Bom pra cachorro. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+// ===== CARRINHO =====
+function getCarrinho() {
+    return JSON.parse(localStorage.getItem("carrinho")) || [];
+}
+
+function salvarCarrinho(carrinho) {
+    localStorage.setItem("carrinho", JSON.stringify(carrinho));
+}
+
+function atualizarContador() {
+    const carrinho = getCarrinho();
+    document.querySelector(".carrinho-contador").textContent = carrinho.length;
+}
+
+function adicionarAoCarrinho(produto) {
+    const carrinho = getCarrinho();
+    carrinho.push(produto);
+    salvarCarrinho(carrinho);
+    atualizarContador();
+    alert("Produto adicionado ao carrinho!");
+}
+
+document.querySelectorAll(".btn-add-to-cart").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const produto = {
+            id: btn.dataset.id,
+            nome: btn.dataset.nome,
+            preco: btn.dataset.preco,
+            imagem: "https://via.placeholder.com/300" // imagem da web
+        };
+        adicionarAoCarrinho(produto);
+    });
+});
+
+atualizarContador();
+</script>
+
+<script>
+// Forçar clique no logo para voltar à página inicial
+document.querySelector('.logo a').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'index.html';
+});
+</script>
+
+
+</body>
+</html>
