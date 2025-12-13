@@ -210,6 +210,67 @@ nav ul li a:hover { color: var(--primary-color); }
         font-size: 16px;
     }
 }
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* Corrige estouro no header */
+.header {
+    width: 100%;
+}
+
+/* User actions */
+.user-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 15px 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    nav ul li a {
+        margin: 0;
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
+    }
+
+    .user-actions {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    .user-actions a {
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
+    }
+
+    .cta-buttons {
+        width: 100%;
+    }
+
+    .whatsapp-float {
+        right: 15px;
+        max-width: calc(100vw - 30px);
+        white-space: nowrap;
+    }
+}
 
 </style>
 
