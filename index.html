@@ -271,6 +271,31 @@ html, body {
         white-space: nowrap;
     }
 }
+/* ===============================
+   CORREÇÃO DEFINITIVA MOBILE
+=============================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden !important;
+}
+
+/* Evita qualquer elemento maior que a tela */
+img, video, iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Header nunca estoura */
+.header {
+    width: 100
 
 </style>
 
