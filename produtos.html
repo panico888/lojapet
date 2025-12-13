@@ -88,6 +88,63 @@
 
         /* FOOTER */
         .footer { background-color: var(--text-color); color: white; text-align: center; padding: 20px 5%; margin-top: 0; }
+        /* =============================
+   RESPONSIVIDADE MOBILE
+============================= */
+@media (max-width: 768px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    /* HEADER */
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+        text-align: center;
+    }
+
+    .header > div,
+    .header nav {
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
+        padding: 10px;
+        border-radius: 20px;
+    }
+
+    /* MENU */
+    nav ul {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    nav ul li a {
+        width: 100%;
+        max-width: 260px;
+        text-align: center;
+    }
+
+    /* PRODUTOS */
+    .products-header h1 {
+        font-size: 2em;
+    }
+
+    .products-list-container {
+        padding: 30px 15px;
+    }
+
+    /* BOTÃO WHATSAPP */
+    .whatsapp-float {
+        bottom: 15px;
+        right: 15px;
+        padding: 12px 16px;
+        font-size: 16px;
+    }
+}
+
     </style>
 </head>
 <body>
