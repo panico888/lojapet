@@ -19,7 +19,7 @@
             background-repeat: repeat;
             background-size: 50px 50px;
             background-position: top left;
-            background-attachment: fixed;
+           
             font-family: var(--font-family);
         }
         a { text-decoration: none; color: var(--primary-color); }
@@ -168,10 +168,13 @@ img, video, iframe {
 
 /* Header nunca estoura */
 .header {
-    width: 100
+    width: 100%;
+    max-width: 100%;
+}
+
 
     </style>
-</head>
+
 <body>
     <header class="header">
         <div class="logo"><span>bom pra cachorro</span></div>
@@ -179,7 +182,9 @@ img, video, iframe {
             <ul>
                 <li><a href="produtos.html?pet=cao">Cães</a></li>
                 <li><a href="produtos.html?pet=gato">Gatos</a></li>
-                <li><a href="produtos.html">Aves e Outros</a></li>
+                <li><a href="produtos.html?pet=outros">🦜 Aves</a></li>
+                <li><a href="produtos.html?pet=ave">🐾 Outros</a></li>
+                
             </ul>
         </nav>
         <div class="user-actions">
@@ -286,30 +291,70 @@ img, video, iframe {
         window.adicionarAoCarrinho = adicionarAoCarrinho;
 
         // ====================== produtos.js ======================
-        const produtos = [
-            {id:1, nome:'Ração Premium', preco:50, img:'https://via.placeholder.com/250x150?text=Ração+Premium'},
-            {id:2, nome:'Brinquedo Bola', preco:20, img:'https://via.placeholder.com/250x150?text=Brinquedo+Bola'},
-            {id:3, nome:'Cama Pet', preco:150, img:'https://via.placeholder.com/250x150?text=Cama+Pet'},
-            {id:4, nome:'Shampoo Pet', preco:35, img:'https://via.placeholder.com/250x150?text=Shampoo+Pet'}
-        ];
+       const produtos = [
+    // CÃES
+    {id:1, nome:'Ração Premium Cão', preco:50, categoria:'cao', img:'https://via.placeholder.com/250x150?text=Ração+Cão'},
+    {id:2, nome:'Brinquedo Bola', preco:20, categoria:'cao', img:'https://via.placeholder.com/250x150?text=Bola+Cão'},
 
-        function carregarProdutos(){
-            const container = document.getElementById('products-list');
-            container.innerHTML='';
-            produtos.forEach(p=>{
-                const div = document.createElement('div');
-                div.className='product-item';
-                div.innerHTML=`
-                    <img src="${p.img}" class="product-img" />
-                    <h3>${p.nome}</h3>
-                    <p class="price">R$ ${p.preco.toFixed(2)}</p>
-                    <button class="btn btn-add-to-cart" onclick="adicionarAoCarrinho('${p.nome}',${p.preco},${p.id})">
-                        Adicionar ao Carrinho
-                    </button>
-                `;
-                container.appendChild(div);
-            });
+    // GATOS
+    {id:3, nome:'Ração Premium Gato', preco:55, categoria:'gato', img:'https://via.placeholder.com/250x150?text=Ração+Gato'},
+    {id:4, nome:'Arranhador', preco:120, categoria:'gato', img:'https://via.placeholder.com/250x150?text=Arranhador'},
+
+    // AVES 
+    {id:5, nome:'Ração para Aves', preco:35, categoria:'outros', img:'https://via.placeholder.com/250x150?text=Ração+Aves'},
+    {id:6, nome:'Gaiola', preco:180, categoria:'outros', img:'https://via.placeholder.com/250x150?text=Gaiola'},
+
+    //outros
+     {id:4, nome:'Arranhador', preco:120, categoria:'ave', img:'https://via.placeholder.com/250x150?text=Arranhador'},
+
+];
+
+
+       function carregarProdutos(){
+    const container = document.getElementById('products-list');
+    const title = document.getElementById('category-title');
+    const desc = document.getElementById('category-description');
+
+    const params = new URLSearchParams(window.location.search);
+    const pet = params.get('pet');
+
+    let produtosFiltrados = produtos;
+
+    if (pet) {
+        produtosFiltrados = produtos.filter(p => p.categoria === pet);
+
+        if (pet === 'cao') {
+            title.textContent = 'Produtos para Cães 🐶';
+            desc.textContent = 'Tudo para a saúde e diversão do seu cachorro';
         }
+        if (pet === 'gato') {
+            title.textContent = 'Produtos para Gatos 🐱';
+            desc.textContent = 'Conforto e carinho para seu gato';
+        }
+        if (pet === 'outros') {
+            title.textContent = 'Aves & Outros Pets 🐦';
+            desc.textContent = 'Produtos especiais para outros animais';
+        }
+    }
+
+    container.innerHTML = '';
+
+    produtosFiltrados.forEach(p=>{
+        const div = document.createElement('div');
+        div.className='product-item';
+        div.innerHTML=`
+            <img src="${p.img}" class="product-img" />
+            <h3>${p.nome}</h3>
+            <p class="price">R$ ${p.preco.toFixed(2)}</p>
+            <button class="btn btn-add-to-cart"
+                onclick="adicionarAoCarrinho('${p.nome}',${p.preco},${p.id})">
+                Adicionar ao Carrinho
+            </button>
+        `;
+        container.appendChild(div);
+    });
+}
+
     </script>
 </body>
 </html>

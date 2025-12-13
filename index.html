@@ -1,423 +1,211 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PetShop Pro - Ração Prática e Inovadora</title>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PetShop Pro</title>
 
 <style>
-/* ======= ESTILOS ======= */
-/* ======= ESTILOS ======= */
-:root {
-    --primary-color: #3B82F6;
-    --secondary-color: #10B981;
-    --text-color: #195bb8;
-    --background-light: #F9FAFB;
-    --font-family: 'Arial', sans-serif;
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;overflow-x:hidden;font-family:Arial;background:#f9fafb}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 5%;
+    background:#fff;
+    border-bottom:1px solid #e5e7eb;
+    flex-wrap:wrap;
+}
+.logo{font-size:1.8em;font-weight:bold;color:#2563eb}
+nav ul{list-style:none;display:flex;gap:10px;flex-wrap:wrap}
+nav a{padding:8px 14px;border-radius:20px;background:#f3f4f6;color:#111;text-decoration:none;font-weight:500}
+.user-actions a{position:relative;text-decoration:none;font-weight:bold}
+
+.carrinho-contador{
+    position:absolute;top:-8px;right:-10px;
+    background:#ef4444;color:#fff;
+    border-radius:50%;padding:2px 6px;
+    font-size:12px;display:none
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+main{padding:40px 5%}
 
-body {
-    background-image: url(https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1200&q=80);
-
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    overflow-x: hidden;
+.section-title{
+    text-align:center;
+    font-size:2em;
+    margin-bottom:30px;
+    color:#2563eb
 }
 
-
-
-/* HEADER */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 5%;
-    background-color: var(--background-light);
-    border-bottom: 1px solid #E5E7EB;
+/* ===== CATEGORIAS ===== */
+.category-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
 }
 
-.logo a {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--primary-color);
-    text-decoration: none;
+.category-card{
+    position:relative;
+    height:220px;
+    border-radius:15px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 6px 12px rgba(0,0,0,.15);
+    transition:.3s;
 }
-.logo span {
-    font-size: 1.8em;
-    font-weight: bold;
-    color: var(--primary-color);
-    text-decoration: none; /* sem sublinhado */
-    cursor: default; /* indica que não é clicável */
-}
+.category-card:hover{transform:scale(1.03)}
 
-
-nav ul { display: flex; list-style: none; }
-nav ul li a {
-    text-decoration: none;
-    color: var(--text-color);
-    margin: 0 15px;
-    font-weight: 500;
-    transition: .3s;
-}
-nav ul li a:hover { color: var(--primary-color); }
-
-/* HERO */
-.hero {
-    background: rgba(126, 204, 205, 0.6);
-    padding: 80px 5% 50px;
-    text-align: center;
+.category-card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }
 
-.hero h1 { font-size: 3em; margin-bottom: 15px; color: var(--primary-color); }
-.hero p { font-size: 1.2em; margin-bottom: 30px; }
-
-.btn {
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-size: 1em;
-    cursor: pointer;
-    border: none;
-    margin: 0 10px;
-    font-weight: bold;
-}
-.primary { background-color: var(--primary-color); color: white; }
-.secondary {
-    background-color: white;
-    color: var(--primary-color);
-    border: 2px solid var(--primary-color);
-}
-.primary:hover { background-color: #2563EB; }
-.secondary:hover { background-color: var(--primary-color); color: white; }
-
-/* FEATURES */
-.features { padding: 50px 5%; text-align: center; }
-.feature-grid {
-    display: flex;
-    justify-content: space-around;
-    gap: 30px;
-}
-.feature-item {
-    flex: 1;
-    background: var(--background-light);
-    padding: 30px;
-    border-radius: 10px;
+.category-overlay{
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,.45);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:2em;
+    font-weight:bold;
+    text-align:center;
 }
 
-/* PRODUTOS */
-.products {
-    padding: 50px 5%;
-    text-align: center;
-    background-color: var(--background-light);
-}
-.product-item {
-    width: 300px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border: 1px solid #E5E7EB;
-    border-radius: 10px;
-}
-.whatsapp-float {
-    position: fixed; /* Fixo na tela */
-    bottom: 20px; /* distância do rodapé */
-    right: 20px;  /* distância da lateral direita */
-    background-color: #25D366; /* verde WhatsApp */
-    color: white;
-    font-size: 18px;
-    padding: 15px 20px;
-    border-radius: 50px;
-    text-decoration: none;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    z-index: 1000; /* sempre acima dos outros elementos */
-    transition: background-color 0.3s;
+/* ===== DESTAQUE ===== */
+.featured{
+    margin-top:60px;
 }
 
-.whatsapp-float:hover {
-    background-color: #128C7E;
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:25px;
 }
 
-
-/* FOOTER */
-.footer {
-    background-color: var(--text-color);
-    color: white;
-    text-align: center;
-    padding: 20px 5%;
+.product-item{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    box-shadow:0 4px 8px rgba(0,0,0,.1)
 }
-/* =============================
-   RESPONSIVIDADE
-============================= */
-
-/* Tablets e celulares */
-@media (max-width: 768px) {
-
-    /* Header vira coluna */
-    .header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 15px;
-        text-align: center;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    /* Texto do topo */
-    .hero h1 {
-        font-size: 2em;
-    }
-
-    .hero p {
-        font-size: 1em;
-    }
-
-    /* Botões */
-    .cta-buttons {
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
-    }
-
-    /* Produtos */
-    .product-item {
-        width: 90%;
-    }
-
-    /* Features (se usar depois) */
-    .feature-grid {
-        flex-direction: column;
-    }
-
-    /* WhatsApp não cobre conteúdo */
-    .whatsapp-float {
-        bottom: 15px;
-        right: 15px;
-        padding: 12px 16px;
-        font-size: 16px;
-    }
+.product-item img{
+    max-width:100%;
+    height:180px;
+    object-fit:contain;
 }
-html, body {
-    max-width: 100%;
-    overflow-x: hidden;
+.price{font-size:1.4em;color:#10b981;margin:10px 0}
+
+.btn{
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    width:100%;
+    background:#2563eb;
+    color:#fff;
+    font-weight:bold;
+    cursor:pointer
 }
 
-/* Corrige estouro no header */
-.header {
-    width: 100%;
+@media(max-width:768px){
+    .header{flex-direction:column;gap:10px}
+    nav ul{justify-content:center}
+    .category-card{height:180px}
 }
-
-/* User actions */
-.user-actions {
-    display: flex;
-    gap: 10px;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-    .header {
-        flex-direction: column;
-        align-items: center;
-        gap: 12px;
-        padding: 15px 10px;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-    }
-
-    nav ul li a {
-        margin: 0;
-        width: 100%;
-        max-width: 260px;
-        text-align: center;
-    }
-
-    .user-actions {
-        flex-direction: column;
-        width: 100%;
-        align-items: center;
-    }
-
-    .user-actions a {
-        width: 100%;
-        max-width: 260px;
-        text-align: center;
-    }
-
-    .cta-buttons {
-        width: 100%;
-    }
-
-    .whatsapp-float {
-        right: 15px;
-        max-width: calc(100vw - 30px);
-        white-space: nowrap;
-    }
-}
-/* ===============================
-   CORREÇÃO DEFINITIVA MOBILE
-=============================== */
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden !important;
-}
-
-/* Evita qualquer elemento maior que a tela */
-img, video, iframe {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Header nunca estoura */
-.header {
-    width: 100
-
 </style>
+</head>
 
 <body>
 
 <header class="header">
-    <div class="logo">
-        <a href="index.html">Bom pra cachorro</a>
-    </div>
-
+    <div class="logo">bom pra cachorro</div>
     <nav>
         <ul>
             <li><a href="produtos.html?pet=cao">Cães</a></li>
             <li><a href="produtos.html?pet=gato">Gatos</a></li>
-            <li><a href="produtos.html?pet=outros">Aves e Outros</a></li>
+            <li><a href="produtos.html">Aves & Outros</a></li>
         </ul>
     </nav>
-
     <div class="user-actions">
-        <a href="#">👤 Login</a>
-        <a href="carrinho.html">
-            🛒 Carrinho 
+        <a href="carrinho.html">🛒 Carrinho
             <span class="carrinho-contador">0</span>
         </a>
     </div>
 </header>
 
-<!-- ✅ WHATSAPP FLUTUANTE (FORA DO HEADER) -->
-<a href="https://wa.me/5511999999999"
-   target="_blank"
-   class="whatsapp-float">
-   📲 Quero Ajuda
-</a>
-
 <main>
 
-<section class="hero">
-    <h1>A Ração Perfeita Para Seu Pet. Garantida!</h1>
-    <p>Selecione o perfil do seu amigo e encontre a nutrição ideal em segundos.</p>
+<h2 class="section-title">Categorias</h2>
 
-    <div class="cta-buttons">
-        <a href="produtos.html?pet=cao" class="btn primary">🐶 Cão</a>
-        <a href="produtos.html?pet=gato" class="btn primary">🐱 Gato</a>
+<section class="category-grid">
+    <div class="category-card" onclick="irCategoria('cao')">
+        <img src="https://images.unsplash.com/photo-1543466835-00a7907e9de1">
+        <div class="category-overlay">CÃES 🐶</div>
+    </div>
+
+    <div class="category-card" onclick="irCategoria('gato')">
+        <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131">
+        <div class="category-overlay">GATOS 🐱</div>
+    </div>
+
+    <div class="category-card" onclick="irCategoria('outros')">
+        <img src="https://images.unsplash.com/photo-1501706362039-c6e80973b59c">
+        <div class="category-overlay">AVES & OUTROS 🐦</div>
     </div>
 </section>
 
-<section class="products">
-    <h2>Produtos em Destaque</h2>
+<section class="featured">
+    <h2 class="section-title">🔥 Ração em Destaque</h2>
 
-    <div class="product-item">
-        <h3>Ração Premium Cão Adulto</h3>
-        <p>Fórmula natural, digestibilidade e ômega 3.</p>
-        <p class="price">R$ 159,90</p>
-
-        <button class="btn primary btn-add-to-cart"
-            data-id="1"
-            data-nome="Ração Premium Cão Adulto"
-            data-preco="159.90">
-            Adicionar ao Carrinho
-        </button>
+    <div class="product-grid">
+        <div class="product-item">
+            <img src="https://via.placeholder.com/300x200?text=Ração+Premium">
+            <h3>Ração Premium Cão Adulto</h3>
+            <p class="price">R$ 159,90</p>
+            <button class="btn" onclick="adicionarAoCarrinho('Ração Premium Cão Adulto',159.90,1)">
+                Adicionar ao Carrinho
+            </button>
+        </div>
     </div>
 </section>
 
 </main>
 
-<footer class="footer">
-    <p>&copy; 2025 Bom pra cachorro. Todos os direitos reservados.</p>
-</footer>
-
-</body>
-
-
 <script>
-// ===== CARRINHO =====
-function getCarrinho() {
-    return JSON.parse(localStorage.getItem("carrinho")) || [];
-}
+let carrinho=[];
 
-function salvarCarrinho(carrinho) {
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-}
-
-function atualizarContador() {
-    const carrinho = getCarrinho();
-    document.querySelector(".carrinho-contador").textContent = carrinho.length;
-}
-
-function adicionarAoCarrinho(produto) {
-    const carrinho = getCarrinho();
-    carrinho.push(produto);
-    salvarCarrinho(carrinho);
+function carregarCarrinho(){
+    const salvo=localStorage.getItem("petshopProCarrinho");
+    if(salvo) carrinho=JSON.parse(salvo);
     atualizarContador();
-    alert("Produto adicionado ao carrinho!");
+}
+function salvarCarrinho(){
+    localStorage.setItem("petshopProCarrinho",JSON.stringify(carrinho));
+}
+function atualizarContador(){
+    const c=document.querySelector(".carrinho-contador");
+    const total=carrinho.reduce((s,i)=>s+i.quantidade,0);
+    c.textContent=total;
+    c.style.display=total>0?"inline-block":"none";
+}
+function adicionarAoCarrinho(nome,preco,id){
+    const item=carrinho.find(i=>i.id===id);
+    if(item) item.quantidade++;
+    else carrinho.push({id,nome,preco,quantidade:1});
+    salvarCarrinho();
+    window.location.href="carrinho.html";
+}
+function irCategoria(cat){
+    window.location.href=`produtos.html?pet=${cat}`;
 }
 
-document.querySelectorAll(".btn-add-to-cart").forEach(btn => {
-    btn.addEventListener("click", () => {
-        const produto = {
-            id: btn.dataset.id,
-            nome: btn.dataset.nome,
-            preco: btn.dataset.preco,
-            imagem: "https://via.placeholder.com/300" // imagem da web
-        };
-        adicionarAoCarrinho(produto);
-    });
-});
-
-atualizarContador();
+document.addEventListener("DOMContentLoaded",carregarCarrinho);
 </script>
-
-<script>
-// Forçar clique no logo para voltar à página inicial
-const logoLink = document.querySelector('.logo a');
-if (logoLink) {
-    logoLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.location.href = 'index.html';
-    });
-}
-
-</script>
-
 
 </body>
 </html>
